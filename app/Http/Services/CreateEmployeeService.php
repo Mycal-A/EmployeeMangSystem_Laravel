@@ -15,26 +15,7 @@ class CreateEmployeeService
     {
         DB::transaction(function () use ($request) {
       
-             // Validate the request data
-            $request->validate([
-                'name' => 'required|string',
-                'email' => 'required|email|unique:employees,email',
-                'password' => 'required|string|min:6',
-                'location' => 'required|string',
-                'role' => 'required|string',
-                'salary' => 'required|numeric|gte:10000',
-                'access' => 'required|in:0,1',
-                'family.*.family_name' => 'required|string',
-                'family.*.relationship' => 'required|string',
-                'family.*.dob' => 'required|date',
-                'education.*.course' => 'required|string',
-                'education.*.institution' => 'required|string',
-                'education.*.cgpa' => 'required|numeric',
-                'education.*.graduation_year' => 'required|integer|digits:4|between:1900,' . (date('Y') + 10),
-                'company.*.company' => 'required|string',
-                'company.*.role' => 'required|string',
-                'company.*.year_of_experience' => 'required|numeric',
-            ]);
+            $this->validateEmployeeRequest($request);
 
             // Create the employee
             $employee = Employee::create([
@@ -70,5 +51,27 @@ class CreateEmployeeService
         });
     }
 
-   
+    protected function validateEmployeeRequest(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:employees,email',
+            'password' => 'required|string|min:6',
+            'location' => 'required|string',
+            'role' => 'required|string',
+            'salary' => 'required|numeric|gte:10000',
+            'access' => 'required|in:0,1',
+            'family.*.family_name' => 'required|string',
+            'family.*.relationship' => 'required|string',
+            'family.*.dob' => 'required|date',
+            'education.*.course' => 'required|string',
+            'education.*.institution' => 'required|string',
+            'education.*.cgpa' => 'required|numeric',
+            'education.*.graduation_year' => 'required|integer|digits:4|between:1900,' . (date('Y') + 10),
+            'company.*.company' => 'required|string',
+            'company.*.role' => 'required|string',
+            'company.*.year_of_experience' => 'required|numeric',
+       ]);
+    }
 }
