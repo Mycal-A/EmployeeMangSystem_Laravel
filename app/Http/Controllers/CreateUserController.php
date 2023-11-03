@@ -8,7 +8,7 @@ use App\Models\EmpEducation;
 use App\Models\EmpExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Services\CreateEmployeeService;
+use App\Http\Services\Admin\CreateEmployeeService;
 
 class CreateUserController extends Controller
 {
