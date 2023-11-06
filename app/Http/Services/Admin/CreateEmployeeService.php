@@ -30,21 +30,21 @@ class CreateEmployeeService
 
             // Create Families
             $families = [];
-            foreach ($request->input('family') as $familyData) {
+            foreach ($request->input('families') as $familyData) {
                 $families[] = new EmpFamily($familyData);
             }
             $employee->families()->saveMany($families);
 
             // Create Educations
             $educations = [];
-            foreach ($request->input('education') as $educationData) {
+            foreach ($request->input('educations') as $educationData) {
                 $educations[] = new EmpEducation($educationData);
             }
             $employee->educations()->saveMany($educations);
 
             // Create Experiences
             $experiences = [];
-            foreach ($request->input('company') as $experienceData) {
+            foreach ($request->input('experiences') as $experienceData) {
                 $experiences[] = new EmpExperience($experienceData);
             }
             $employee->experiences()->saveMany($experiences);
@@ -62,16 +62,16 @@ class CreateEmployeeService
             'role' => 'required|string',
             'salary' => 'required|numeric|gte:10000',
             'access' => 'required|in:0,1',
-            'family.*.family_name' => 'required|string',
-            'family.*.relationship' => 'required|string',
-            'family.*.dob' => 'required|date',
-            'education.*.course' => 'required|string',
-            'education.*.institution' => 'required|string',
-            'education.*.cgpa' => 'required|numeric',
-            'education.*.graduation_year' => 'required|integer|digits:4|between:1900,' . (date('Y') + 10),
-            'company.*.company' => 'required|string',
-            'company.*.role' => 'required|string',
-            'company.*.year_of_experience' => 'required|numeric',
+            'families.*.name' => 'required|string',
+            'families.*.relationship' => 'required|string',
+            'families.*.dob' => 'required|date',
+            'educations.*.course' => 'required|string',
+            'educations.*.institution' => 'required|string',
+            'educations.*.cgpa' => 'required|numeric',
+            'educations.*.graduation_year' => 'required|integer|digits:4|between:1900,' . (date('Y') + 10),
+            'experiences.*.company' => 'required|string',
+            'experiences.*.role' => 'required|string',
+            'experiences.*.year_of_experience' => 'required|numeric',
        ]);
     }
 }

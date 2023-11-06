@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\EmpFamily;
 use App\Models\EmpEducation;
@@ -18,9 +19,13 @@ class CreateUserController extends Controller
 
     public function store(Request $request,CreateEmployeeService $createEmployeeService)
     {
-        $createEmployeeService->createEmployee($request);
-
-        return redirect('/adminHome')->with('success', 'Employee created successfully.');
+        try {
+            $createEmployeeService->createEmployee($request);
+            return redirect('/adminHome')->with('success', 'Employee created successfully.');
+        } catch (\Exception $e) {
+            
+            return redirect('/adminHome')->with('error', 'Failed to create employee.'.$e);
+        }
     
     }
     

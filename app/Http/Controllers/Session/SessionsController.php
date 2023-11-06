@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Session;
+
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth;
 use App\Models\Employee;
 

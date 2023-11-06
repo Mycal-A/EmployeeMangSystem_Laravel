@@ -4,18 +4,18 @@
     function addExperienceSection() {
         var $section = $('<div class="experience-details-section" data-index="' + experienceCounter + '">\
                             <div class="row g-3 mx-auto">\
-                                <input type="hidden" name="experience[' + experienceCounter + '][experience_id]" class="form-control" value="" placeholder="Enter Experience ID">\
+                                <input type="hidden" name="experiences[' + experienceCounter + '][id]" class="form-control" value="" placeholder="Enter Experience ID">\
                                 <div class="col-md-4">\
                                     <label for="inputAddress" class="form-label">Company Name</label>\
-                                    <input type="text" name="experience[' + experienceCounter + '][company]" class="form-control" value="" placeholder="Enter Company Name" required>\
+                                    <input type="text" name="experiences[' + experienceCounter + '][company]" class="form-control" value="" placeholder="Enter Company Name" required>\
                                 </div>\
                                 <div class="col-md-4">\
                                     <label for="inputAddress" class="form-label">Role</label>\
-                                    <input type="text" name="experience[' + experienceCounter + '][role]" class="form-control" value="" placeholder="Enter Role" required>\
+                                    <input type="text" name="experiences[' + experienceCounter + '][role]" class="form-control" value="" placeholder="Enter Role" required>\
                                 </div>\
                                 <div class="col-md-4">\
                                     <label for="inputAddress" class="form-label">Year Of Experience</label>\
-                                    <input type="text" name="experience[' + experienceCounter + '][year_of_experience]" class="form-control" value="" placeholder="Enter Year Of Experience" required>\
+                                    <input type="text" name="experiences[' + experienceCounter + '][year_of_experience]" class="form-control" value="" placeholder="Enter Year Of Experience" required>\
                                 </div>\
                             </div>\
                             <button type="button" class="btn btn-danger remove-experience-details">Delete</button>\
@@ -99,18 +99,18 @@
     function addFamilySection() {
         var $section = $('<div class="family-details-section" data-index="' + familyCounter + '">\
                                         <div class="row g-3 mx-auto">\
-                                            <input type="hidden" name="family[' + familyCounter + '][family_id]" class="form-control" value="" placeholder="Enter Family ID">\
+                                            <input type="hidden" name="families[' + familyCounter + '][id]" class="form-control" value="" placeholder="Enter Family ID">\
                                             <div class="col-md-4">\
                                                 <label for="inputAddress" class="form-label">Name</label>\
-                                                <input type="text" name="family[' + familyCounter + '][family_name]" class="form-control" value="" placeholder="Enter Name" required>\
+                                                <input type="text" name="families[' + familyCounter + '][name]" class="form-control" value="" placeholder="Enter Name" required>\
                                             </div>\
                                             <div class="col-md-4">\
                                                 <label for="inputAddress" class="form-label">Relationship</label>\
-                                                <input type="text" name="family[' + familyCounter + '][relationship]" class="form-control" value="" placeholder="Enter Relationship" required>\
+                                                <input type="text" name="families[' + familyCounter + '][relationship]" class="form-control" value="" placeholder="Enter Relationship" required>\
                                             </div>\
                                             <div class="col-md-4">\
                                                 <label for="inputAddress" class="form-label">DOB</label>\
-                                                <input type="text" name="family[' + familyCounter + '][dob]" class="form-control" value="" placeholder="YYYY-MM-DD" required>\
+                                                <input type="text" name="families[' + familyCounter + '][dob]" class="form-control" value="" placeholder="YYYY-MM-DD" required>\
                                             </div>\
                                         </div>\
                                         <div>\
@@ -202,22 +202,22 @@
     function addEducationSection() {
         var $section = $('<div class="education-details-section" data-index="' + educationCounter + '">\
                             <div class="row g-3 mx-auto">\
-                                <input type="hidden" name="education[' + educationCounter + '][education_id]" class="form-control" value="" placeholder="Enter Education ID">\
+                                <input type="hidden" name="educations[' + educationCounter + '][id]" class="form-control" value="" placeholder="Enter Education ID">\
                                 <div class="col-md-3">\
                                     <label for="inputAddress" class="form-label">Course</label>\
-                                    <input type="text" name="education[' + educationCounter + '][course]" class="form-control" value="" placeholder="Enter Education" required>\
+                                    <input type="text" name="educations[' + educationCounter + '][course]" class="form-control" value="" placeholder="Enter Education" required>\
                                 </div>\
                                 <div class="col-md-3">\
                                     <label for="inputAddress" class="form-label">Institution</label>\
-                                    <input type="text" name="education[' + educationCounter + '][institution]" class="form-control" value="" placeholder="Enter Institute Name" required>\
+                                    <input type="text" name="educations[' + educationCounter + '][institution]" class="form-control" value="" placeholder="Enter Institute Name" required>\
                                 </div>\
                                 <div class="col-md-3">\
                                     <label for="inputAddress" class="form-label">CGPA</label>\
-                                    <input type="text" name="education[' + educationCounter + '][cgpa]" class="form-control" value="" placeholder="Enter CGPA" required>\
+                                    <input type="text" name="educations[' + educationCounter + '][cgpa]" class="form-control" value="" placeholder="Enter CGPA" required>\
                                 </div>\
                                 <div class="col-md-3">\
                                     <label for="inputAddress" class="form-label">Graduation Year</label>\
-                                    <input type="text" name="education[' + educationCounter + '][graduation_year]" class="form-control" value="" placeholder="Enter Graduation Year" required>\
+                                    <input type="text" name="educations[' + educationCounter + '][graduation_year]" class="form-control" value="" placeholder="Enter Graduation Year" required>\
                                 </div>\
                             </div>\
                             <button type="button" class="btn btn-danger remove-education-details">Delete</button>\

@@ -10,7 +10,7 @@ class EmpExperience extends Model
     use HasFactory;
 
     protected $guarded=[];
-    protected $primaryKey='experience_id';
+    protected $primaryKey='id';
 
     public function employee(){
 

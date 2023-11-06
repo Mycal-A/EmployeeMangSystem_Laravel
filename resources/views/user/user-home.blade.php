@@ -69,32 +69,32 @@
                     @foreach($employee->families as $index => $family)
                     <div class="family-details-section" data-index="{{ $index }}">
                         <div class="row g-3 mx-auto">
-                            <input type="hidden" name="family[{{ $index }}][family_id]" class="form-control"
-                                value="{{ $family->family_id ?: old('family.' . $index . '.family_id', null) }}"
+                            <input type="hidden" name="families[{{ $index }}][id]" class="form-control"
+                                value="{{ $family->id ?: old('families.' . $index . '.id', null) }}"
                                 placeholder="Enter Family ID">
                             <div class="col-md-4">
                                 <label for="inputAddress" class="form-label">Name</label>
-                                <input type="text" name="family[{{ $index }}][family_name]" class="form-control"
-                                    value="{{ $family->family_name ?: old('family.' . $index . '.family_name', null) }}"
+                                <input type="text" name="families[{{ $index }}][name]" class="form-control"
+                                    value="{{ $family->name ?: old('families.' . $index . '.name', null) }}"
                                     placeholder="Enter Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="inputAddress" class="form-label">Relationship</label>
-                                <input type="text" name="family[{{ $index }}][relationship]" class="form-control"
-                                    value="{{ $family->relationship ?: old('family.' . $index . '.relationship', null) }}"
+                                <input type="text" name="families[{{ $index }}][relationship]" class="form-control"
+                                    value="{{ $family->relationship ?: old('families.' . $index . '.relationship', null) }}"
                                     placeholder="Enter Relationship" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="inputAddress" class="form-label">DOB</label>
-                                <input type="text" name="family[{{ $index }}][dob]" class="form-control"
-                                    value="{{ $family->dob ?: old('family.' . $index . '.dob', null) }}"
+                                <input type="text" name="families[{{ $index }}][dob]" class="form-control"
+                                    value="{{ $family->dob ?: old('families.' . $index . '.dob', null) }}"
                                     placeholder="YYYY-MM-DD" required>
                             </div>
                         </div>
 
                         <div>
                             <button type="button" class="btn btn-danger remove-family-details"
-                                data-family-record-id="{{ $family->family_id }}">Delete</button>
+                                data-family-record-id="{{ $family->id }}">Delete</button>
                         </div>
                     </div>
                     @endforeach
@@ -110,36 +110,36 @@
                     @foreach($employee->educations as $index => $educationDetail)
                     <div class="education-details-section" data-index="{{ $index }}">
                         <div class="row g-3 mx-auto">
-                            <input type="hidden" name="education[{{ $index }}][education_id]" class="form-control"
-                                value="{{ $educationDetail['education_id'] ?: old('education.' . $index . '.education_id', null) }}"
+                            <input type="hidden" name="educations[{{ $index }}][id]" class="form-control"
+                                value="{{ $educationDetail['id'] ?: old('educations.' . $index . '.id', null) }}"
                                 placeholder="Enter Education ID">
                             <div class="col-md-3">
                                 <label for="inputAddress" class="form-label">Course</label>
-                                <input type="text" name="education[{{ $index }}][course]" class="form-control"
-                                    value="{{ $educationDetail['course'] ?: old('education.' . $index . '.course', null) }}"
+                                <input type="text" name="educations[{{ $index }}][course]" class="form-control"
+                                    value="{{ $educationDetail['course'] ?: old('educations.' . $index . '.course', null) }}"
                                     placeholder="Enter Education" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="inputAddress" class="form-label">Institution</label>
-                                <input type="text" name="education[{{ $index }}][institution]" class="form-control"
-                                    value="{{ $educationDetail['institution'] ?: old('education.' . $index . '.institution', null) }}"
+                                <input type="text" name="educations[{{ $index }}][institution]" class="form-control"
+                                    value="{{ $educationDetail['institution'] ?: old('educations.' . $index . '.institution', null) }}"
                                     placeholder="Enter Institute Name" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="inputAddress" class="form-label">CGPA</label>
-                                <input type="text" name="education[{{ $index }}][cgpa]" class="form-control"
-                                    value="{{ $educationDetail['cgpa'] ?: old('education.' . $index . '.cgpa', null) }}"
+                                <input type="text" name="educations[{{ $index }}][cgpa]" class="form-control"
+                                    value="{{ $educationDetail['cgpa'] ?: old('educations.' . $index . '.cgpa', null) }}"
                                     placeholder="Enter CGPA" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="inputAddress" class="form-label">Graduation Year</label>
-                                <input type="text" name="education[{{ $index }}][graduation_year]" class="form-control"
-                                    value="{{ $educationDetail['graduation_year'] ?: old('education.' . $index . '.graduation_year', null) }}"
+                                <input type="text" name="educations[{{ $index }}][graduation_year]" class="form-control"
+                                    value="{{ $educationDetail['graduation_year'] ?: old('educations.' . $index . '.graduation_year', null) }}"
                                     placeholder="Enter Graduation Year" required>
                             </div>
                         </div>
                         <button type="button" class="btn btn-danger remove-education-details"
-                            data-education-record-id="{{ $educationDetail->education_id }}">Delete</button>
+                            data-education-record-id="{{ $educationDetail->id }}">Delete</button>
                     </div>
                     @endforeach
                 </div>
@@ -153,31 +153,31 @@
                     @foreach($employee->experiences ?? [] as $index => $experienceDetail)
                     <div class="experience-details-section" data-index="{{ $index }}">
                         <div class="row g-3 mx-auto">
-                            <input type="hidden" name="experience[{{ $index }}][experience_id]" class="form-control"
-                                value="{{ $experienceDetail['experience_id'] ?: old('experience.' . $index . '.experience_id', null) }}"
+                            <input type="hidden" name="experiences[{{ $index }}][id]" class="form-control"
+                                value="{{ $experienceDetail['id'] ?: old('experiences.' . $index . '.id', null) }}"
                                 placeholder="Enter Experience ID">
                             <div class="col-md-4">
                                 <label for="inputAddress" class="form-label">Company Name</label>
-                                <input type="text" name="experience[{{ $index }}][company]" class="form-control"
-                                    value="{{ $experienceDetail['company'] ?: old('experience.' . $index . '.company', null) }}"
+                                <input type="text" name="experiences[{{ $index }}][company]" class="form-control"
+                                    value="{{ $experienceDetail['company'] ?: old('experiences.' . $index . '.company', null) }}"
                                     placeholder="Enter Company Name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="inputAddress" class="form-label">Role</label>
-                                <input type="text" name="experience[{{ $index }}][role]" class="form-control"
-                                    value="{{ $experienceDetail['role'] ?: old('experience.' . $index . '.role', null) }}"
+                                <input type="text" name="experiences[{{ $index }}][role]" class="form-control"
+                                    value="{{ $experienceDetail['role'] ?: old('experiences.' . $index . '.role', null) }}"
                                     placeholder="Enter Role" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="inputAddress" class="form-label">Year Of Experience</label>
-                                <input type="text" name="experience[{{ $index }}][year_of_experience]"
+                                <input type="text" name="experiences[{{ $index }}][year_of_experience]"
                                     class="form-control"
-                                    value="{{ $experienceDetail['year_of_experience'] ?: old('experience.' . $index . '.year_of_experience', null) }}"
+                                    value="{{ $experienceDetail['year_of_experience'] ?: old('experiences.' . $index . '.year_of_experience', null) }}"
                                     placeholder="Enter Year Of Experience" required>
                             </div>
                         </div>
                         <button type="button" class="btn btn-danger remove-experience-details"
-                            data-experience-record-id="{{ $experienceDetail->experience_id }}">Delete</button>
+                            data-experience-record-id="{{ $experienceDetail->id }}">Delete</button>
                     </div>
                     @endforeach
                 </div>

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\EmpFamily;
 use App\Models\EmpEducation;
@@ -32,8 +34,8 @@ class AdminController extends Controller
             $employeeUpdateService->updateEmployee($request, $id);
             return redirect('/adminHome')->with('success', 'Employee details updated successfully');
         } catch (\Exception $e) {
-            // Handle the exception, log it, or return an error response
-            return redirect('/adminHome')->with('error', 'Failed to update employee details.');
+            
+            return redirect('/adminHome')->with('error', 'Failed to update employee details.'.$e);
         }
     }
 

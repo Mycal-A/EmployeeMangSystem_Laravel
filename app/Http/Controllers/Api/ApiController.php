@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\EmpFamily;
 use App\Models\EmpEducation;
 use App\Models\EmpExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Services\ApiService;
+use App\Http\Services\Api\ApiService;
 
 class ApiController extends Controller
 {

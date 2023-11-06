@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Http\Services\Api;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
@@ -15,8 +15,6 @@ class ApiService
     {
       
     DB::transaction(function () use ($request) {
-
-       
 
         // Create a new employee
         $employee = Employee::create([
@@ -64,7 +62,7 @@ class ApiService
             'role' => 'required|string',
             'salary' => 'required|numeric|gte:10000',
             'access' => 'required|in:0,1',
-            'famililes.*.family_name' => 'required|string',
+            'famililes.*.name' => 'required|string',
             'families.*.relationship' => 'required|string',
             'families.*.dob' => 'required|date',
             'educations.*.course' => 'required|string',
@@ -86,7 +84,7 @@ class ApiService
             'location' => 'required|string',
             'salary' => 'required|numeric',
             'role' => 'required|string',
-            'families.*.family_name' => 'required|string',
+            'families.*.name' => 'required|string',
             'families.*.relationship' => 'required|string',
             'families.*.dob' => 'required|date',
             'educations.*.course' => 'required|string',
@@ -115,16 +113,16 @@ class ApiService
 
         $employee->update($employeeData);
 
-        $this->updateRelatedModels($request, $id, EmpFamily::class, 'families', 'family_id');
-        $this->updateRelatedModels($request, $id, EmpEducation::class, 'educations', 'education_id');
-        $this->updateRelatedModels($request, $id, EmpExperience::class, 'experiences', 'experience_id');
+        $this->updateRelatedModels($request, $id, EmpFamily::class, 'families');
+        $this->updateRelatedModels($request, $id, EmpEducation::class, 'educations');
+        $this->updateRelatedModels($request, $id, EmpExperience::class, 'experiences');
     }
 
-    protected function updateRelatedModels(Request $request, $id, $modelClass, $key, $key_id)
+    protected function updateRelatedModels(Request $request, $id, $modelClass, $key)
     {
         if ($request->has($key)) {
             foreach ($request->input($key) as $data) {
-                $modelId = $data[$key_id] ?? null;
+                $modelId = $data['id'] ?? null;
 
                 if ($modelId) {
                     $model = $modelClass::find($modelId);

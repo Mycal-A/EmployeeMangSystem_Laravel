@@ -22,7 +22,7 @@
 
     // Add Education Details Section
     $("#add-education-details").click(function () {
-        addSection($("#education-details-container"), ".education-details-section", "education");
+        addSection($("#education-details-container"), ".education-details-section", "educations");
     });
 
     // Remove Education Details Section
@@ -36,7 +36,7 @@
 
     // Add Family Details Section
     $("#add-family-details").click(function () {
-        addSection($("#family-details-container"), ".family-details-section", "family");
+        addSection($("#family-details-container"), ".family-details-section", "families");
     });
 
     // Remove Family Details Section
@@ -50,7 +50,7 @@
 
     // Add Experience Details Section
     $("#add-experience-details").click(function () {
-        addSection($("#experience-details-container"), ".experience-details-section", "company");
+        addSection($("#experience-details-container"), ".experience-details-section", "experiences");
     });
 
     // Remove Experience Details Section

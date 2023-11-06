@@ -5,32 +5,32 @@
     @foreach($employee->families as $index => $family)
     <div class="family-details-section" data-index="{{ $index }}">
         <div class="row g-3 mx-auto">
-            <input type="hidden" name="family[{{ $index }}][family_id]" class="form-control"
-                value="{{ $family->family_id ?: old('family.' . $index . '.family_id', null) }}"
+            <input type="hidden" name="families[{{ $index }}][id]" class="form-control"
+                value="{{ $family->id ?: old('families.' . $index . '.id', null) }}"
                 placeholder="Enter Family ID">
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Name</label>
-                <input type="text" name="family[{{ $index }}][family_name]" class="form-control"
-                    value="{{ $family->family_name ?: old('family.' . $index . '.family_name', null) }}"
+                <input type="text" name="families[{{ $index }}][name]" class="form-control"
+                    value="{{ $family->name ?: old('families.' . $index . '.name', null) }}"
                     placeholder="Enter Name" required>
             </div>
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Relationship</label>
-                <input type="text" name="family[{{ $index }}][relationship]" class="form-control"
-                    value="{{ $family->relationship ?: old('family.' . $index . '.relationship', null) }}"
+                <input type="text" name="families[{{ $index }}][relationship]" class="form-control"
+                    value="{{ $family->relationship ?: old('families.' . $index . '.relationship', null) }}"
                     placeholder="Enter Relationship" required>
             </div>
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">DOB</label>
-                <input type="text" name="family[{{ $index }}][dob]" class="form-control"
-                    value="{{ $family->dob ?: old('family.' . $index . '.dob', null) }}" placeholder="YYYY-MM-DD"
+                <input type="text" name="families[{{ $index }}][dob]" class="form-control"
+                    value="{{ $family->dob ?: old('families.' . $index . '.dob', null) }}" placeholder="YYYY-MM-DD"
                     required>
             </div>
         </div>
 
         <div>
             <button type="button" class="btn btn-danger remove-family-details"
-                data-family-record-id="{{ $family->family_id }}">Delete</button>
+                data-family-record-id="{{ $family->id }}">Delete</button>
         </div>
     </div>
     @endforeach

@@ -19,7 +19,7 @@ class EmpFamilyFactory extends Factory
     {
         return [
             'employee_id' =>Employee::factory(),
-            'family_name' => $this->faker->name,
+            'name' => $this->faker->name,
             'relationship' => $this->faker->word,
             'dob' => $this->faker->date,
         ];

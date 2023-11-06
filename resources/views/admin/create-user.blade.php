@@ -53,19 +53,19 @@
             <div class="family-details-section" data-index="0">
                 <div class="row g-3 mx-auto">
                     <div class="col-md-4">
-                        <x-form.label name="family_name" />
-                        <x-form.input name="family[0][family_name]" placeholder="Enter Name" />
-                        <x-form.errors name="family[0][family_name]" />
+                        <x-form.label name="name" />
+                        <x-form.input name="families[0][name]" placeholder="Enter Name" />
+                        <x-form.errors name="families[0][name]" />
                     </div>
                     <div class="col-md-4">
                         <x-form.label name="relationship" />
-                        <x-form.input name="family[0][relationship]" placeholder="Enter Relationship" />
-                        <x-form.errors name="family[0][relationship]" />
+                        <x-form.input name="families[0][relationship]" placeholder="Enter Relationship" />
+                        <x-form.errors name="families[0][relationship]" />
                     </div>
                     <div class="col-md-4">
                         <x-form.label name="dob" />
-                        <x-form.input name="family[0][dob]" placeholder="YYYY-MM-DD" />
-                        <x-form.errors name="family[0][dob]" />
+                        <x-form.input name="families[0][dob]" placeholder="YYYY-MM-DD" />
+                        <x-form.errors name="families[0][dob]" />
                     </div>
                     <div>
                         <button type="button" class="btn btn-sm btn-danger remove-family-details">Remove</button>
@@ -82,24 +82,24 @@
                 <div class="row g-3 mx-auto">
                     <div class="col-md-3">
                         <x-form.label name="course" />
-                        <x-form.input name="education[0][course]" placeholder="Enter Education" />
-                        <x-form.errors name="education[0][course]" />
+                        <x-form.input name="educations[0][course]" placeholder="Enter Education" />
+                        <x-form.errors name="educations[0][course]" />
                     </div>
                     <div class="col-md-3">
                         <x-form.label name="institution" />
-                        <x-form.input name="education[0][institution]" placeholder="Enter Institute Name" required />
-                        <x-form.errors name="education[0][institution]" />
+                        <x-form.input name="educations[0][institution]" placeholder="Enter Institute Name" required />
+                        <x-form.errors name="educations[0][institution]" />
                     </div>
                     <div class="col-md-3">
                         <x-form.label name="cgpa" />
-                        <x-form.input name="education[0][cgpa]" placeholder="Enter CGPA" required />
-                        <x-form.errors name="education[0][cgpa]" />
+                        <x-form.input name="educations[0][cgpa]" placeholder="Enter CGPA" required />
+                        <x-form.errors name="educations[0][cgpa]" />
                     </div>
                     <div class="col-md-3">
                         <x-form.label name="Graducation Year" />
-                        <x-form.input name="education[0][graduation_year]" placeholder="Enter Graduation Year"
+                        <x-form.input name="educations[0][graduation_year]" placeholder="Enter Graduation Year"
                             required />
-                        <x-form.errors name="education[0][graduation_year]" />
+                        <x-form.errors name="educations[0][graduation_year]" />
                     </div>
                     <div>
                         <button type="button" class="btn btn-sm btn-danger remove-education-details">Remove</button>
@@ -117,19 +117,19 @@
                 <div class="row g-3 mx-auto">
                     <div class="col-md-4">
                         <x-form.label name="company" />
-                        <x-form.input name="company[0][company]" placeholder="Enter Company Name" required />
-                        <x-form.errors name="company[0][company]" />
+                        <x-form.input name="experiences[0][company]" placeholder="Enter Company Name" required />
+                        <x-form.errors name="experiences[0][company]" />
                     </div>
                     <div class="col-md-4">
                         <x-form.label name="role" />
-                        <x-form.input name="company[0][role]" placeholder="Enter Role" required />
-                        <x-form.errors name="company[0][role]" />
+                        <x-form.input name="experiences[0][role]" placeholder="Enter Role" required />
+                        <x-form.errors name="experiences[0][role]" />
                     </div>
                     <div class="col-md-4">
                         <x-form.label name="Year Of Experience" />
-                        <x-form.input name="company[0][year_of_experience]" placeholder="Enter Year Of Experience"
+                        <x-form.input name="experiences[0][year_of_experience]" placeholder="Enter Year Of Experience"
                             required />
-                        <x-form.errors name="company[0][year_of_experience]" />
+                        <x-form.errors name="experiences[0][year_of_experience]" />
                     </div>
                     <div>
                         <button type="button" class="btn btn-sm btn-danger remove-experience-details">Remove</button>

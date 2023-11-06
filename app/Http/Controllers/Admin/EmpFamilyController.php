@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use App\Models\EmpFamily;
 use Illuminate\Http\Request;
 
 class EmpFamilyController extends Controller
 {
- 
-    // Other methods...
 
     public function deleteFamilyRecord($id)
     {

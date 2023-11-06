@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Employee;
@@ -19,16 +20,6 @@ class EmployeeController extends Controller
         return view('user.user-home')->with([
             'employee' => $employee]);
     }
-
-    // public function show()
-    // {
-    //     // Make an API request to get additional details from ApiController
-    //     $apiResponse = Http::get('http://127.0.0.1:8888/api/employee-details');
-    //     $employee = $apiResponse->json('data');
-
-    //     // Pass the authenticated user details and API details separately to the view
-    //     return view('user.user-home', compact('employee'));
-    // }
 
     public function toggleAccess(Request $request, $id)
     {

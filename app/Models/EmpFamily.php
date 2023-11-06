@@ -10,7 +10,7 @@ class EmpFamily extends Model
     use HasFactory;
     protected $guarded=[];
 
-    protected $primaryKey = 'family_id';
+    protected $primaryKey = 'id';
   
 
     public function employee(){

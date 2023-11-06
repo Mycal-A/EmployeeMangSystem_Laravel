@@ -12,6 +12,7 @@ class EmployeeUpdateService
 {
     public function updateEmployee(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:employees,email,' . $id,
@@ -19,16 +20,16 @@ class EmployeeUpdateService
             'location' => 'required|string',
             'salary' => 'required|numeric',
             'role' => 'required|string',
-            'family.*.family_name' => 'required|string',
-            'family.*.relationship' => 'required|string',
-            'family.*.dob' => 'required|date',
-            'education.*.course' => 'required|string',
-            'education.*.institution' => 'required|string',
-            'education.*.cgpa' => 'required|numeric',
-            'education.*.graduation_year' => 'required|integer|digits:4|between:1900,' . (date('Y') + 10),
-            'experience.*.company' => 'required|string',
-            'experience.*.role' => 'required|string',
-            'experience.*.year_of_experience' => 'required|numeric',
+            'families.*.name' => 'required|string',
+            'families.*.relationship' => 'required|string',
+            'families.*.dob' => 'required|date',
+            'educations.*.course' => 'required|string',
+            'educations.*.institution' => 'required|string',
+            'educations.*.cgpa' => 'required|numeric',
+            'educations.*.graduation_year' => 'required|integer|digits:4|between:1900,' . (date('Y') + 10),
+            'experiences.*.company' => 'required|string',
+            'experiences.*.role' => 'required|string',
+            'experiences.*.year_of_experience' => 'required|numeric',
         ]);
 
         $employee = Employee::findOrFail($id);
@@ -48,17 +49,17 @@ class EmployeeUpdateService
 
         $employee->update($employeeData);
 
-        $this->updateRelatedModels($request, $id, EmpFamily::class, 'family');
-        $this->updateRelatedModels($request, $id, EmpEducation::class, 'education');
-        $this->updateRelatedModels($request, $id, EmpExperience::class, 'experience');
+        $this->updateRelatedModels($request, $id, EmpFamily::class, 'families');
+        $this->updateRelatedModels($request, $id, EmpEducation::class, 'educations');
+        $this->updateRelatedModels($request, $id, EmpExperience::class, 'experiences');
     }
 
     protected function updateRelatedModels(Request $request, $id, $modelClass, $key)
     {
         if ($request->has($key)) {
             foreach ($request->input($key) as $data) {
-                $modelId = $data[$key . '_id'] ?? null;
-
+                $modelId = $data['id'] ?? null;
+                // dd($modelId);
                 if ($modelId) {
                     $model = $modelClass::find($modelId);
                     $model->update($data);

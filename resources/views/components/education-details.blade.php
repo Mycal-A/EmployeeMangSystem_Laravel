@@ -4,36 +4,36 @@
     @foreach($employee->educations as $index => $educationDetail)
     <div class="education-details-section" data-index="{{ $index }}">
         <div class="row g-3 mx-auto">
-            <input type="hidden" name="education[{{ $index }}][education_id]" class="form-control"
-                value="{{ $educationDetail['education_id'] ?: old('education.' . $index . '.education_id', null) }}"
+            <input type="hidden" name="educations[{{ $index }}][id]" class="form-control"
+                value="{{ $educationDetail['id'] ?: old('education.' . $index . '.id', null) }}"
                 placeholder="Enter Education ID">
             <div class="col-md-3">
                 <label for="inputAddress" class="form-label">Course</label>
-                <input type="text" name="education[{{ $index }}][course]" class="form-control"
+                <input type="text" name="educations[{{ $index }}][course]" class="form-control"
                     value="{{ $educationDetail['course'] ?: old('education.' . $index . '.course', null) }}"
                     placeholder="Enter Education" required>
             </div>
             <div class="col-md-3">
                 <label for="inputAddress" class="form-label">Institution</label>
-                <input type="text" name="education[{{ $index }}][institution]" class="form-control"
+                <input type="text" name="educations[{{ $index }}][institution]" class="form-control"
                     value="{{ $educationDetail['institution'] ?: old('education.' . $index . '.institution', null) }}"
                     placeholder="Enter Institute Name" required>
             </div>
             <div class="col-md-3">
                 <label for="inputAddress" class="form-label">CGPA</label>
-                <input type="text" name="education[{{ $index }}][cgpa]" class="form-control"
+                <input type="text" name="educations[{{ $index }}][cgpa]" class="form-control"
                     value="{{ $educationDetail['cgpa'] ?: old('education.' . $index . '.cgpa', null) }}"
                     placeholder="Enter CGPA" required>
             </div>
             <div class="col-md-3">
                 <label for="inputAddress" class="form-label">Graduation Year</label>
-                <input type="text" name="education[{{ $index }}][graduation_year]" class="form-control"
+                <input type="text" name="educations[{{ $index }}][graduation_year]" class="form-control"
                     value="{{ $educationDetail['graduation_year'] ?: old('education.' . $index . '.graduation_year', null) }}"
                     placeholder="Enter Graduation Year" required>
             </div>
         </div>
         <button type="button" class="btn btn-danger remove-education-details"
-            data-education-record-id="{{ $educationDetail->education_id }}">Delete</button>
+            data-education-record-id="{{ $educationDetail->id }}">Delete</button>
     </div>
     @endforeach
 </div>

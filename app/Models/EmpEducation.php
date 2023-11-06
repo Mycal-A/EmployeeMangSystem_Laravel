@@ -9,7 +9,7 @@ class EmpEducation extends Model
 {
     use HasFactory;
     protected $guarded=[];
-    protected $primaryKey='education_id';
+    protected $primaryKey='id';
 
     public function employee(){
 
