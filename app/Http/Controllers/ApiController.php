@@ -38,7 +38,7 @@ class ApiController extends Controller
 
         } catch (\Exception $e) {
             
-            return response()->json(['error' => 'Failed to create employee details'.$e], 404);
+            return response()->json(['error' => 'Failed to create employee details'.$e], 400);
         }
     
     }
@@ -51,7 +51,7 @@ class ApiController extends Controller
             return response()->json(['message' => 'Employee updated successfully'], 200);
         } catch (\Exception $e) {
             
-            return response()->json(['error' => 'Failed to update employee details'.$e], 404);
+            return response()->json(['error' => 'Failed to update employee details'.$e], 400);
         }
 
     } 
