@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
@@ -9,9 +9,12 @@ use App\Models\EmpEducation;
 use App\Models\EmpExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Services\Api\ApiService;
+use App\Http\Services\Admin\CreateService;
+use App\Http\Services\Admin\UpdateService;
+use App\Http\Requests\Admin\CreateRequest;
+use App\Http\Requests\Admin\UpdateRequest;
 
-class ApiController extends Controller
+class EmployeeController extends Controller
 {
 
     public function index()
@@ -31,26 +34,38 @@ class ApiController extends Controller
         return response()->json(['data' => $employee]);
     }
 
-    public function store(Request $request,ApiService $createEmployee)
+    public function store(CreateRequest $request,CreateService $createEmployee)
     {
         try {
-            $createEmployee->createEmployee($request);
-            return response()->json(['error' => 'Employee created successfully'], 200);
+            $data = $request->validated();
+            $createEmployee->create($data);
 
-        } catch (\Exception $e) {
+            return response()->json(['success' => 'Employee created successfully'], 200);
+
+        }catch (\Illuminate\Validation\ValidationException $e) {
+            // Validation failed, return JSON with error messages
+            return response()->json(['error' => $e->errors()], 400);
+        }
+         catch (\Exception $e) {
             
             return response()->json(['error' => 'Failed to create employee details'.$e], 400);
         }
     
     }
 
-    public function update(Request $request, $id,ApiService $updateEmployee)
+    public function update(UpdateRequest $request, $id,UpdateService $updateEmployee)
     {
         try {
-            $updateEmployee->updateEmployee($request, $id);
+            $data = $request->validated();
+            $updateEmployee->update($data, $id);
      
             return response()->json(['message' => 'Employee updated successfully'], 200);
-        } catch (\Exception $e) {
+
+        }catch (\Illuminate\Validation\ValidationException $e) {
+            // Validation failed, return JSON with error messages
+            return response()->json(['error' => $e->errors()], 400);
+            
+        }catch (\Exception $e) {
             
             return response()->json(['error' => 'Failed to update employee details'.$e], 400);
         }

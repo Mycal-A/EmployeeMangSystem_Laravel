@@ -10,7 +10,8 @@ use App\Models\EmpFamily;
 use App\Models\EmpEducation;
 use App\Models\EmpExperience;
 use Illuminate\Http\Request;
-use App\Http\Services\User\UserUpdateService;
+use App\Http\Services\Admin\UpdateService;
+use App\Http\Requests\Admin\UpdateRequest;
 
 class EmployeeController extends Controller
 {
@@ -21,22 +22,23 @@ class EmployeeController extends Controller
             'employee' => $employee]);
     }
 
-    public function toggleAccess(Request $request, $id)
-    {
-        $employee = Employee::findOrFail($id);
-        $employee->toggleAccess();
+   
 
-        return back(); // Redirect back to the previous page
-    }
-
-    public function updateEmployee(Request $request, $id,UserUpdateService $userUpdateService)
+    public function update(UpdateRequest $request, $id,UpdateService $userUpdateService)
     {
         try {
-            $userUpdateService->updateEmployee($request, $id);
+            
+            $data=$request->validated();
+            $userUpdateService->update($data, $id);
             return redirect('/employeeHome')->with('success', 'Employee details updated successfully');
+
+        }catch (\Illuminate\Validation\ValidationException $e) {
+            // Redirect back with validation errors and old input             
+            return back()->withErrors($e->errors())->withInput($request->all());
+            
         } catch (\Exception $e) {
             // Handle the exception, log it, or return an error response
-            return redirect('/employeeHome')->with('error', 'Failed to update employee details.');
+            return redirect('/employeeHome')->with('error', 'Failed to update employee details.'.$e);
         }
     }
 }       

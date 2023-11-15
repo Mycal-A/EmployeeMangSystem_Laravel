@@ -9,7 +9,8 @@ use App\Models\EmpEducation;
 use App\Models\EmpExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Services\Admin\CreateEmployeeService;
+use App\Http\Services\Admin\CreateService;
+use App\Http\Requests\Admin\CreateRequest;
 
 class CreateUserController extends Controller
 {
@@ -17,14 +18,21 @@ class CreateUserController extends Controller
         return view('admin.create-user');
     }
 
-    public function store(Request $request,CreateEmployeeService $createEmployeeService)
+    public function store(CreateRequest $request,CreateService $createEmployeeService)
     {
-        try {
-            $createEmployeeService->createEmployee($request);
+        try {           
+            // dd($request->all());
+            $data = $request->validated();
+            $createEmployeeService->create($data);
             return redirect('/adminHome')->with('success', 'Employee created successfully.');
-        } catch (\Exception $e) {
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Redirect back with validation errors and old input
+             
+            return back()->withErrors($e->errors())->withInput($request->all());
+        }catch (\Exception $e) {
             
-            return redirect('/adminHome')->with('error', 'Failed to create employee.'.$e);
+            return redirect('/adminHome')->with('error', 'Failed to create employee.');
         }
     
     }

@@ -1,4 +1,23 @@
 <x-layout>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .button-container button {
+            margin-left: 9px;
+            /* Adjust the margin as needed */
+        }
+
+    </style>
+    <div class="button-container">
+        <form action="/employee/download/pdf/{{$employee->id}}">
+            @csrf
+            <button type="submit" class="btn btn-success">Download PDF</button>
+        </form>
+    </div>
+
 
     <div class="container mt-4 row g-3 mx-auto">
         <h1>Edit Employee</h1>

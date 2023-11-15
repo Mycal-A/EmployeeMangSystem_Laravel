@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\EmpEducationController;
 use App\Http\Controllers\Admin\EmpExperienceController;
 use App\Http\Controllers\Session\SessionsController;
 use App\Http\Controllers\Admin\CreateUserController;
+use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +21,20 @@ use App\Http\Controllers\Admin\CreateUserController;
 |
 */
 
-Route::get('/', [SessionsController::class, 'showLoginForm'])->middleware('guest');
+Route::get('/', [SessionsController::class, 'showLoginForm'])->middleware('guest')->name('login');
 Route::post('/login', [SessionsController::class, 'login']);
 Route::get('/logout', [SessionsController::class, 'logout'])->middleware('auth');
 
 Route::middleware('admin')->group(function(){
     Route::get('/adminHome', [AdminController::class, 'index']);
     Route::get('/admin/edit/employee/{employee}', [AdminController::class, 'show']);
-    Route::patch('/admin/employee/update/{employee}', [AdminController::class, 'updateEmployee']);
+    Route::patch('/admin/employee/update/{employee}', [AdminController::class, 'update']);
     Route::delete('/admin/emp/delete/{employee}', [AdminController::class, 'destroy']);
+    Route::patch('/toggleAccess/{id}', [AdminController::class, 'toggleAccess']);    
     Route::get('/createUser', [CreateUserController::class, 'show']);
     Route::post('/createUser', [CreateUserController::class, 'store']);
-    Route::patch('/toggleAccess/{id}', [EmployeeController::class, 'toggleAccess']);
+    Route::get('/admin/download/employeeDetails', [AdminController::class, 'downloadEmployeesData']);
+    Route::post('/admin/bulkUpload', [AdminController::class, 'importEmployeesData']);
 });
 
 Route::delete('/admin/delete/family/record/{id}', [EmpFamilyController::class, 'deleteFamilyRecord']);
@@ -39,4 +42,5 @@ Route::delete('/admin/delete/education/record/{id}', [EmpEducationController::cl
 Route::delete('/admin/delete/experience/record/{id}', [EmpExperienceController::class, 'deleteExperienceRecord']);
 
 Route::get('/employeeHome', [EmployeeController::class, 'show'])->middleware('auth');
-Route::patch('/employee/update/{id}', [EmployeeController::class, 'updateEmployee']);
+Route::patch('/employee/update/{employee}', [EmployeeController::class, 'update'])->middleware('auth');
+Route::get('/employee/download/pdf/{employee}', [pdfController::class, 'generatePdf'])->middleware('auth');
