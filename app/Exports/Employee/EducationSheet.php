@@ -15,8 +15,9 @@ class EducationSheet implements FromQuery, WithHeadings, WithTitle
     public function query()
     {
         // Retrieve family details
-        $Columns = ['id','employee_id', 'institution', 'cgpa','graduation_year'];
-        return EmpEducation::select($Columns);
+        $columns = ['employees.name as employee_name', 'emp_education.institution', 'emp_education.cgpa', 'emp_education.graduation_year'];
+        return EmpEducation::select($columns)
+            ->join('employees', 'emp_education.employee_id', '=', 'employees.id');
     }
 
     /**
@@ -25,7 +26,7 @@ class EducationSheet implements FromQuery, WithHeadings, WithTitle
     public function headings(): array
     {
         // Define headings for family sheet
-        return ['ID', 'Employee_id', 'Institution', 'CGPA','Graduation Year'];
+        return [ 'Employee_Name', 'Institution', 'CGPA','Graduation Year'];
     }
 
     public function title(): string

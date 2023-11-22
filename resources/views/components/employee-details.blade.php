@@ -4,7 +4,7 @@
 <div class="row g-3 mx-auto">
     <div class="col-md-3">
         <x-form.label name="employee id" />
-        <input type="text" name="id" id="id" class="form-control" value="{{ $employee->id }}" required readonly>
+        <input type="text" name="id" id="id" class="form-control" value="{{ $employee->employee_id }}" required readonly>
 
         <x-form.errors name="id" />
     </div>

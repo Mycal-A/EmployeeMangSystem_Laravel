@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\EmpEducation;
 use App\Models\Employee;
 
 
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class EmpEducationFactory extends Factory
 {
+    protected $model = EmpEducation::class;
+
     /**
      * Define the model's default state.
      *
@@ -18,6 +21,7 @@ class EmpEducationFactory extends Factory
      */
     public function definition(): array
     {
+        
         return [
             'employee_id' =>Employee::factory(),
             'institution'=>$this->faker->company,

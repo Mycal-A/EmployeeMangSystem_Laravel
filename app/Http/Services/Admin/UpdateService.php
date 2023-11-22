@@ -12,7 +12,8 @@ class UpdateService
 {
     public function update($data, $id)
     {
-        $employee = Employee::findOrFail($id);    
+        $employee = Employee::findOrFail($id); 
+          
         $employeeData = [
             'name' => $data['name'],
             'email' => $data['email'],
@@ -40,11 +41,11 @@ class UpdateService
         if (isset($data[$key])) {
             foreach ($data[$key] as $modelData) {
                
-                $modelId = $modelData['id'] ?? null;
+                $modelId = $modelData['employee_id'] ?? null;
             
             
                 if ($modelId) {
-                    $model = $modelClass::find($modelId);
+                    $model = $modelClass::where('employee_id', $modelId);
                     $model->update($modelData);
                 } else {
                     $modelData['employee_id'] = $id;

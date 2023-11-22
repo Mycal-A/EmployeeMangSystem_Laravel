@@ -15,8 +15,9 @@ class FamilySheet implements FromQuery, WithHeadings, WithTitle
     public function query()
     {
         // Retrieve family details
-        $Columns = ['id','employee_id','name', 'relationship', 'dob'];
-        return EmpFamily::select($Columns);
+        $columns = ['employees.name as employee_name','emp_families.name', 'emp_families.relationship', 'emp_families.dob'];
+        return EmpFamily::select($columns)
+            ->join('employees', 'emp_families.employee_id', '=', 'employees.id');
     }
 
     /**
@@ -25,7 +26,7 @@ class FamilySheet implements FromQuery, WithHeadings, WithTitle
     public function headings(): array
     {
         // Define headings for family sheet
-        return ['ID','Employee_id', 'Name', 'Relationship', 'DOB'];
+        return ['Employee_Name', 'Name', 'Relationship', 'DOB'];
     }
 
     public function title(): string

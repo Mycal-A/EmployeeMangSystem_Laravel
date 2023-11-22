@@ -15,8 +15,8 @@ class Employee extends Authenticatable
         return $this->email === 'mycal@gmail.com';
     }
 
-    public function families(){
-
+    public function families()
+    {
         return $this->hasMany(EmpFamily::class);
     }
     public function educations(){

@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <nav class="mt-2">
-        <div>
+    <nav class="mt-2 navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
             <ul class="nav nav-pills">
                 @can('admin')
                 <li class="nav-item">
@@ -25,7 +25,7 @@
                     <a class="nav-link disabled text-xl font-weight-bold text-dark">Welcome
                         {{auth()->user()->name}}!!</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ms-auto ">
                     <a class="btn btn-outline-danger" aria-current="page" href="/logout">Log Out</a>
                 </li>
                 @endauth
@@ -40,7 +40,7 @@
         </div>
         @endif
         @if(session('error'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-danger" role="alert">
             {{ session('error') }}
         </div>
         @endif

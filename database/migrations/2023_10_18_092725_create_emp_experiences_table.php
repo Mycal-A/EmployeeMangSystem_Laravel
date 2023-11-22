@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('emp_experiences', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('employee_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
             $table->string('company');
             $table->string('role');
             $table->decimal('year_of_experience',4,1);

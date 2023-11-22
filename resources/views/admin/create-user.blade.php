@@ -6,37 +6,42 @@
         @csrf
         <h1 class="text-center">Employee Details</h1>
         <div class="container row g-3 mx-auto">
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <x-form.label name="employee id" />
+                <x-form.input name="employee_id" placeholder="Enter Employee id" />
+                <x-form.errors name="employee_id" />
+            </div>
+            <div class="col-md-4">
                 <x-form.label name="name" />
                 <x-form.input name="name" placeholder="Enter Name" />
                 <x-form.errors name="name" />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <x-form.label name="email" />
                 <x-form.input name="email" type="email" placeholder="Enter Email" />
                 <x-form.errors name="email" />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <x-form.label name="password" />
                 <x-form.input name="password" type="password" placeholder="Enter Password" />
                 <x-form.errors name="password" />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <x-form.label name="location" />
                 <x-form.input name="location" placeholder="Enter Location" />
                 <x-form.errors name="location" />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <x-form.label name="role" />
                 <x-form.input name="role" placeholder="Enter Role" />
                 <x-form.errors name="role" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <x-form.label name="salary" />
                 <x-form.input name="salary" placeholder="Enter Salary" type="number" />
                 <x-form.errors name="salary" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <x-form.label name="access" />
                 <select name="access" id="access" class="form-control">
                     <option value="0">False</option>

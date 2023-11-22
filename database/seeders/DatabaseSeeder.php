@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        
         \App\Models\EmpEducation::factory(5)->create();
         \App\Models\EmpFamily::factory(5)->create();
         \App\Models\EmpExperience::factory(5)->create();

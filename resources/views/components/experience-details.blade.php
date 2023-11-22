@@ -3,8 +3,8 @@
     @foreach($employee->experiences ?? [] as $index => $experienceDetail)
     <div class="experience-details-section" data-index="{{ $index }}">
         <div class="row g-3 mx-auto">
-            <input type="hidden" name="experiences[{{ $index }}][id]" class="form-control"
-                value="{{ $experienceDetail['id'] ?: old('experiences.' . $index . '.id', null) }}"
+            <input type="hidden" name="experiences[{{ $index }}][employee_id]" class="form-control"
+                value="{{ $experienceDetail['employee_id'] ?: old('experiences.' . $index . '.employee_id', null) }}"
                 placeholder="Enter Experience ID">
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Company Name</label>

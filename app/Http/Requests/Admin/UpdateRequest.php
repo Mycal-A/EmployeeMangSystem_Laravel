@@ -23,16 +23,16 @@ class UpdateRequest extends FormRequest
             'password' => 'nullable|string|min:6',
             'location' => 'required|string',
            
-            'families.*.id' => 'nullable|numeric',
+            'families.*.employee_id' => 'nullable',
             'families.*.name' => 'required|string',
             'families.*.relationship' => 'required|string',
             'families.*.dob' => 'required|date',
-            'educations.*.id' => 'nullable|numeric',
+            'educations.*.employee_id' => 'nullable',
             'educations.*.course' => 'required|string',
             'educations.*.institution' => 'required|string',
             'educations.*.cgpa' => 'required|numeric',
             'educations.*.graduation_year' => 'required|integer|digits:4|between:1900,' . (date('Y') + 10),
-            'experiences.*.id' => 'nullable|numeric',
+            'experiences.*.employee_id' => 'nullable',
             'experiences.*.company' => 'required|string',
             'experiences.*.role' => 'required|string',
             'experiences.*.year_of_experience' => 'required|numeric',
@@ -61,6 +61,15 @@ class UpdateRequest extends FormRequest
     //     );
     // }
 
+    // protected function failedValidation(Validator $validator)
+    // {
+    //     $response = redirect()->back()
+    //         ->withInput()
+    //         ->withErrors($validator->errors()->all());
+    
+    //     throw new HttpResponseException($response);
+    // }
+    
     
 
 }

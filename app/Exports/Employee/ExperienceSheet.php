@@ -15,8 +15,9 @@ class ExperienceSheet implements FromQuery, WithHeadings, WithTitle
     public function query()
     {
         // Retrieve family details
-        $Columns = ['id','employee_id','company', 'role', 'year_of_experience'];
-        return EmpExperience::select($Columns);
+        $columns = ['employees.name as employee_name', 'emp_experiences.company', 'emp_experiences.role', 'emp_experiences.year_of_experience'];
+        return EmpExperience::select($columns)
+            ->join('employees', 'emp_experiences.employee_id', '=', 'employees.id');
     }
 
     /**
@@ -25,7 +26,7 @@ class ExperienceSheet implements FromQuery, WithHeadings, WithTitle
     public function headings(): array
     {
         // Define headings for family sheet
-        return ['ID','Employee_ID', 'Company', 'Role', 'Year Of Experience'];
+        return ['Employee_Name', 'Company', 'Role', 'Year Of Experience'];
     }
 
     public function title(): string

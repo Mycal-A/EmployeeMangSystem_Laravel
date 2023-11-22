@@ -56,6 +56,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Employee ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Location</th>
@@ -70,6 +71,7 @@
                 @foreach($employees as $employee)
                 <tr>
                     <td>{{ $employee->id }}</td>
+                    <td>{{ $employee->employee_id }}</td>
                     <td>{{ $employee->name }}</td>
                     <td>{{ $employee->email }}</td>
                     <td>{{ $employee->location }}</td>

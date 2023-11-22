@@ -30,7 +30,7 @@ Route::middleware('admin')->group(function(){
     Route::get('/admin/edit/employee/{employee}', [AdminController::class, 'show']);
     Route::patch('/admin/employee/update/{employee}', [AdminController::class, 'update']);
     Route::delete('/admin/emp/delete/{employee}', [AdminController::class, 'destroy']);
-    Route::patch('/toggleAccess/{id}', [AdminController::class, 'toggleAccess']);    
+    Route::patch('/toggleAccess/{id}', [AdminController::class, 'toggleAccess']);
     Route::get('/createUser', [CreateUserController::class, 'show']);
     Route::post('/createUser', [CreateUserController::class, 'store']);
     Route::get('/admin/download/employeeDetails', [AdminController::class, 'downloadEmployeesData']);

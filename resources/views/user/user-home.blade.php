@@ -29,9 +29,9 @@
             <div class="row g-3 mx-auto">
                 <div class="col-md-3">
                     <x-form.label name="employee id" />
-                    <input type="text" name="id" id="id" class="form-control" value="{{ $employee->id }}" required
+                    <input type="text" name="employee_id" id="id" class="form-control" value="{{ $employee->employee_id }}" required
                         readonly>
-                    <x-form.errors name="id" />
+                    <x-form.errors name="employee_id" />
                 </div>
 
                 <div class="col-md-3">
@@ -88,9 +88,8 @@
                     @foreach($employee->families as $index => $family)
                     <div class="family-details-section" data-index="{{ $index }}">
                         <div class="row g-3 mx-auto">
-                            <input type="hidden" name="families[{{ $index }}][id]" class="form-control"
-                                value="{{ $family->id ?: old('families.' . $index . '.id', null) }}"
-                                placeholder="Enter Family ID">
+                            <input type="hidden" name="families[{{ $index }}][employee_id]" class="form-control"
+                                value="{{ $family->employee_id ?: old('families.' . $index . '.employee_id', null) }}">
                             <div class="col-md-4">
                                 <label for="inputAddress" class="form-label">Name</label>
                                 <input type="text" name="families[{{ $index }}][name]" class="form-control"
@@ -129,8 +128,8 @@
                     @foreach($employee->educations as $index => $educationDetail)
                     <div class="education-details-section" data-index="{{ $index }}">
                         <div class="row g-3 mx-auto">
-                            <input type="hidden" name="educations[{{ $index }}][id]" class="form-control"
-                                value="{{ $educationDetail['id'] ?: old('educations.' . $index . '.id', null) }}"
+                            <input type="hidden" name="educations[{{ $index }}][employee_id]" class="form-control"
+                                value="{{ $educationDetail['employee_id'] ?: old('educations.' . $index . '.employee_id', null) }}"
                                 placeholder="Enter Education ID">
                             <div class="col-md-3">
                                 <label for="inputAddress" class="form-label">Course</label>
@@ -172,8 +171,8 @@
                     @foreach($employee->experiences ?? [] as $index => $experienceDetail)
                     <div class="experience-details-section" data-index="{{ $index }}">
                         <div class="row g-3 mx-auto">
-                            <input type="hidden" name="experiences[{{ $index }}][id]" class="form-control"
-                                value="{{ $experienceDetail['id'] ?: old('experiences.' . $index . '.id', null) }}"
+                            <input type="hidden" name="experiences[{{ $index }}][employee_id]" class="form-control"
+                                value="{{ $experienceDetail['employee_id'] ?: old('experiences.' . $index . '.employee_id', null) }}"
                                 placeholder="Enter Experience ID">
                             <div class="col-md-4">
                                 <label for="inputAddress" class="form-label">Company Name</label>

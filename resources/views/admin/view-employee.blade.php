@@ -7,7 +7,7 @@
         <form action="/admin/employee/update/{{$employee->id}}" method="post">
             @csrf
             @method('PATCH')
-
+            
             <x-employee-details :employee="$employee" />
             <x-family-details :employee="$employee" />
             <x-education-details :employee="$employee" />

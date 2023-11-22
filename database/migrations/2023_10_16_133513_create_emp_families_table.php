@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('emp_families', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('employee_id')->constrained()->cascadeOnDelete;
+            $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
             $table->string('name');
             $table->string('relationship');
             $table->date('dob');

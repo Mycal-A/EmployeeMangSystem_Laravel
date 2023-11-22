@@ -17,6 +17,7 @@ class CreateService
       
                 // Create the employee
                 $employee = Employee::create([
+                    "employee_id"=> $data["employee_id"],
                     'name' => $data['name'],
                     'email' => $data['email'],
                     'password' => bcrypt($data['password']),
@@ -26,18 +27,22 @@ class CreateService
                     'access' => $data['access'],
                 ]);
 
-            // Create Families
-            $families = $data['families'] ?? [];
-            $employee->families()->createMany($families);
+                $employee_id = $employee->id;
                 
-            // Create Educations
-            $educations = $data['educations'] ?? [];
-            $employee->educations()->createMany($educations);
-                
-            // Create Experiences
-            $experiences = $data['experiences'] ?? [];
-            $employee->experiences()->createMany($experiences);
-            });
+                // Loop through each type of record and create them
+                $recordTypes = ['families', 'educations', 'experiences'];
+    
+                foreach ($recordTypes as $recordType) {
+                    $records = $data[$recordType] ?? [];
+                    // Add 'employee_id' to each record
+                    $recordsWithEmployeeId = array_map(function ($record) use ($employee_id) {
+                        return array_merge($record, ['employee_id' => $employee_id]);
+                    }, $records);
+    
+                    $employee->{$recordType}()->createMany($recordsWithEmployeeId);
+                }
+
+        });
     }
 
 }

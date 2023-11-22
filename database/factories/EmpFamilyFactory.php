@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\EmpFamily;
 use App\Models\Employee;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class EmpFamilyFactory extends Factory
 {
+    protected $model = EmpFamily::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,6 +20,7 @@ class EmpFamilyFactory extends Factory
      */
     public function definition(): array
     {
+        
         return [
             'employee_id' =>Employee::factory(),
             'name' => $this->faker->name,

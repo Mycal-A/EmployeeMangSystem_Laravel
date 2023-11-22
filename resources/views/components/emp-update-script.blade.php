@@ -4,7 +4,7 @@
     function addExperienceSection() {
         var $section = $('<div class="experience-details-section" data-index="' + experienceCounter + '">\
                             <div class="row g-3 mx-auto">\
-                                <input type="hidden" name="experiences[' + experienceCounter + '][id]" class="form-control" value="" placeholder="Enter Experience ID">\
+                                <input type="hidden" name="experiences[' + experienceCounter + '][employee_id]" class="form-control" value="">\
                                 <div class="col-md-4">\
                                     <label for="inputAddress" class="form-label">Company Name</label>\
                                     <input type="text" name="experiences[' + experienceCounter + '][company]" class="form-control" value="" placeholder="Enter Company Name" required>\
@@ -99,7 +99,7 @@
     function addFamilySection() {
         var $section = $('<div class="family-details-section" data-index="' + familyCounter + '">\
                                         <div class="row g-3 mx-auto">\
-                                            <input type="hidden" name="families[' + familyCounter + '][id]" class="form-control" value="" placeholder="Enter Family ID">\
+                                            <input type="hidden" name="families[' + familyCounter + '][employee_id]" class="form-control" value="" placeholder="Enter Family ID">\
                                             <div class="col-md-4">\
                                                 <label for="inputAddress" class="form-label">Name</label>\
                                                 <input type="text" name="families[' + familyCounter + '][name]" class="form-control" value="" placeholder="Enter Name" required>\
@@ -202,7 +202,7 @@
     function addEducationSection() {
         var $section = $('<div class="education-details-section" data-index="' + educationCounter + '">\
                             <div class="row g-3 mx-auto">\
-                                <input type="hidden" name="educations[' + educationCounter + '][id]" class="form-control" value="" placeholder="Enter Education ID">\
+                                <input type="hidden" name="educations[' + educationCounter + '][employee_id]" class="form-control" value="" placeholder="Enter Education ID">\
                                 <div class="col-md-3">\
                                     <label for="inputAddress" class="form-label">Course</label>\
                                     <input type="text" name="educations[' + educationCounter + '][course]" class="form-control" value="" placeholder="Enter Education" required>\

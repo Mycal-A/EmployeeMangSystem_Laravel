@@ -13,6 +13,7 @@ class CreateRequest extends FormRequest
     }
     public function rules(){
         $rules= [
+            'employee_id' => 'required|string',
             'name' => 'required|string',
             'email' => 'required|email|unique:employees,email',
             'password' => 'required|string|min:6',

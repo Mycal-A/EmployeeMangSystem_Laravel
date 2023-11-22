@@ -4,6 +4,7 @@ namespace App\Imports\Employees;
 
 use App\Models\Employee;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
 class EmployeesImport implements ToModel
 {
@@ -23,12 +24,14 @@ class EmployeesImport implements ToModel
         }
         // Create a new Employee model using direct array access
         return new Employee([
-            'name' => (string) $row[0], // cast to string
-            'email' => (string) $row[1], // cast to string
-            'location' => (string) $row[2], // cast to string
-            'password' => bcrypt($row[3]),
-            'role' => (string) ($row[4] ?? ''),// cast to string
-            'salary' => intval($row[5] ?? ''), // convert to integer
+            'employee_id' => (string) $row[0], // cast to string
+            'name' => (string) $row[1], // cast to string
+            'email' => (string) $row[2], // cast to string
+            'location' => (string) $row[3], // cast to string
+            'password' => bcrypt($row[4]),
+            'role' => (string) ($row[5] ?? ''),// cast to string
+            'salary' => intval($row[6] ?? ''), // convert to integer
         ]);
     }
+    
 }

@@ -45,10 +45,7 @@ class EmployeesExport implements FromCollection, WithHeadings, WithMultipleSheet
     {
         $sheets = [];
 
-        // Add employees sheet
         $sheets[] = new EmployeesExport($this->selectedColumns);
-
-        // Add family sheet
         $sheets[] = new FamilySheet();
         $sheets[] = new EducationSheet();
         $sheets[] = new ExperienceSheet();

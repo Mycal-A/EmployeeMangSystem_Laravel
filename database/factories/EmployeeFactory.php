@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Employee; 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class EmployeeFactory extends Factory
 {
+    protected $model = Employee::class;
+
+    private static $employeeIdCounter = 1;
     /**
      * Define the model's default state.
      *
@@ -16,7 +20,9 @@ class EmployeeFactory extends Factory
      */
     public function definition(): array
     {
+        $employeeId = 'EMP' . str_pad(self::$employeeIdCounter++, 2, '0', STR_PAD_LEFT);
         return [
+            'employee_id' =>$employeeId,
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
