@@ -15,14 +15,16 @@ class EmployeesExport implements FromCollection, WithHeadings, WithMultipleSheet
     */
 
     protected $selectedColumns;
+    public $employees;
 
     public function __construct($selectedColumns)
     {
+        $this->employees = Employee::with(['experiences','educations','families'])->get();
         $this->selectedColumns = $selectedColumns;
     }
     public function collection()
     {
-        // Retrieve only selected columns
+        // Retrieve only selected columns       
         $employees = Employee::select($this->selectedColumns)->get();
 
         return $employees;
@@ -30,7 +32,7 @@ class EmployeesExport implements FromCollection, WithHeadings, WithMultipleSheet
     public function headings(): array
     {
         // Use $this->selectedColumns as headings
-        return $this->selectedColumns;
+        return array_map('ucfirst',$this->selectedColumns);
     }
 
     public function title(): string
@@ -46,9 +48,9 @@ class EmployeesExport implements FromCollection, WithHeadings, WithMultipleSheet
         $sheets = [];
 
         $sheets[] = new EmployeesExport($this->selectedColumns);
-        $sheets[] = new FamilySheet();
-        $sheets[] = new EducationSheet();
-        $sheets[] = new ExperienceSheet();
+        $sheets[] = new FamilySheet($this->employees);
+        $sheets[] = new EducationSheet($this->employees);
+        $sheets[] = new ExperienceSheet($this->employees);
 
         return $sheets;
     }

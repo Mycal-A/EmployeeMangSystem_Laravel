@@ -3,21 +3,40 @@
 namespace App\Exports\Employee;
 
 use App\Models\EmpEducation;
-use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class EducationSheet implements FromQuery, WithHeadings, WithTitle
+class EducationSheet implements FromCollection, WithHeadings, WithTitle
 {
+    public $employees;
+
+    public function __construct($employees)
+    {
+        $this->employees=$employees;
+    }
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function query()
+    public function collection()
     {
-        // Retrieve family details
-        $columns = ['employees.name as employee_name', 'emp_education.institution', 'emp_education.cgpa', 'emp_education.graduation_year'];
-        return EmpEducation::select($columns)
-            ->join('employees', 'emp_education.employee_id', '=', 'employees.id');
+        // Transform employee data to education details
+        $educationDetails = $this->employees->map(function ($employee) {
+            // Assuming 'educations' relationship exists on the Employee model
+            $educations = $employee->educations;
+
+            // Extract relevant information for each education
+            return $educations->map(function ($education) use ($employee) {
+                return [
+                    'Employee_Name' => $employee->name,
+                    'Institution' => $education->institution,
+                    'CGPA' => $education->cgpa,
+                    'Graduation_Year' => $education->graduation_year,
+                ];
+            });
+        });
+
+        return $educationDetails;
     }
 
     /**

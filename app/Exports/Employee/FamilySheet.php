@@ -3,22 +3,42 @@
 namespace App\Exports\Employee;
 
 use App\Models\EmpFamily;
-use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class FamilySheet implements FromQuery, WithHeadings, WithTitle
+class FamilySheet implements FromCollection, WithHeadings, WithTitle
 {
+    public $employees;
+
+    public function __construct($employees)
+    {
+        $this->employees=$employees;
+    }
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function query()
+    public function collection()
     {
-        // Retrieve family details
-        $columns = ['employees.name as employee_name','emp_families.name', 'emp_families.relationship', 'emp_families.dob'];
-        return EmpFamily::select($columns)
-            ->join('employees', 'emp_families.employee_id', '=', 'employees.id');
+        // Transform employee data to family details
+        $familyDetails = $this->employees->map(function ($employee) {
+            // Assuming 'families' relationship exists on the Employee model
+            $families = $employee->families;
+
+            // Extract relevant information for each family member
+            return $families->map(function ($family) use ($employee) {
+                return [
+                    'Employee_Name' => $employee->name,
+                    'Name' => $family->name,
+                    'Relationship' => $family->relationship,
+                    'DOB' => $family->dob,
+                ];
+            });
+        });
+
+        return $familyDetails;
     }
+
 
     /**
      * @return array

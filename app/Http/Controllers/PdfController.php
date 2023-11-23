@@ -9,9 +9,9 @@ use Codedge\Fpdf\Fpdf\Fpdf ;
 
 class PdfController extends Controller
 {
-    public function generatePdf($id,PdfGeneratorService $pdfGenerator)
+    public function generatePdf(Employee $employee,PdfGeneratorService $pdfGenerator)
     {
-        return $pdfGenerator->generatePdf($id);
+        return $pdfGenerator->generatePdf($employee);
     }
    
 }

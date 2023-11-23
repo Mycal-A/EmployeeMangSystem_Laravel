@@ -2,22 +2,41 @@
 
 namespace App\Exports\Employee;
 
-use App\Models\EmpExperience;
-use Maatwebsite\Excel\Concerns\FromQuery;
+use App\Models\EmpExperience,Employee;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class ExperienceSheet implements FromQuery, WithHeadings, WithTitle
+class ExperienceSheet implements FromCollection, WithHeadings, WithTitle
 {
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function query()
+    public $employees;
+
+    public function __construct($employees)
     {
-        // Retrieve family details
-        $columns = ['employees.name as employee_name', 'emp_experiences.company', 'emp_experiences.role', 'emp_experiences.year_of_experience'];
-        return EmpExperience::select($columns)
-            ->join('employees', 'emp_experiences.employee_id', '=', 'employees.id');
+        $this->employees=$employees;
+    }
+    public function collection()
+    {
+        // Transform employee data to experience details
+        $experienceDetails = $this->employees->map(function ($employee) {
+            // Assuming 'experiences' relationship exists on the Employee model
+            $experiences = $employee->experiences;
+
+            // Extract relevant information for each experience
+            return $experiences->map(function ($experience) use ($employee) {
+                return [
+                    'Employee_Name' => $employee->name,
+                    'Company' => $experience->company,
+                    'Role' => $experience->role,
+                    'Year_Of_Experience' => $experience->year_of_experience,
+                ];
+            });
+        }); // Flatten the nested collections
+
+        return $experienceDetails;
     }
 
     /**
@@ -31,6 +50,6 @@ class ExperienceSheet implements FromQuery, WithHeadings, WithTitle
 
     public function title(): string
     {
-        return 'ExperienceDetailsDetails';
+        return 'ExperienceDetails';
     }
 }

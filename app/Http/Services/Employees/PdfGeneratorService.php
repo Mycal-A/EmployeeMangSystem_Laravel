@@ -7,9 +7,8 @@ use Codedge\Fpdf\Fpdf\Fpdf ;
 
 class PdfGeneratorService
 {
-    public function generatePdf($id)
+    public function generatePdf(Employee $employee)
     {
-        $employee = Employee::find($id);
         
         $fpdf = new Fpdf();
         $fpdf->AddPage();
