@@ -5,8 +5,8 @@
     @foreach($employee->families as $index => $family)
     <div class="family-details-section" data-index="{{ $index }}">
         <div class="row g-3 mx-auto">
-            <input type="hidden" name="families[{{ $index }}][employee_id]" class="form-control"
-                value="{{ $family->employee_id ?: old('families.' . $index . '.employee_id', null) }}"
+            <input type="hidden" name="families[{{ $index }}][id]" class="form-control"
+                value="{{ $family->id ?: old('families.' . $index . '.id', null) }}"
                 placeholder="Enter Family ID">
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Name</label>

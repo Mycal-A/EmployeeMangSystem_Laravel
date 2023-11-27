@@ -16,6 +16,10 @@
             @csrf
             <button type="submit" class="btn btn-success">Download PDF</button>
         </form>
+        <form action="/employee/generate-invoice">
+            @csrf
+            <button type="submit" class="btn btn-success">Generate Invoice</button>
+        </form>
     </div>
 
 

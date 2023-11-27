@@ -64,7 +64,7 @@ class AdminController extends Controller
         $employee = Employee::findOrFail($id);
         $employee->toggleAccess();
 
-        return back(); // Redirect back to the previous page
+        return back();
     }
 
     public function downloadEmployeesData() 

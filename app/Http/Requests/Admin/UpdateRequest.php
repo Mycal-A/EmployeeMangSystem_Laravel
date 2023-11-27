@@ -23,24 +23,22 @@ class UpdateRequest extends FormRequest
             'password' => 'nullable|string|min:6',
             'location' => 'required|string',
            
-            'families.*.employee_id' => 'nullable',
+            'families.*.id' => 'nullable',
             'families.*.name' => 'required|string',
             'families.*.relationship' => 'required|string',
             'families.*.dob' => 'required|date',
-            'educations.*.employee_id' => 'nullable',
+            'educations.*.id' => 'nullable',
             'educations.*.course' => 'required|string',
             'educations.*.institution' => 'required|string',
             'educations.*.cgpa' => 'required|numeric',
             'educations.*.graduation_year' => 'required|integer|digits:4|between:1900,' . (date('Y') + 10),
-            'experiences.*.employee_id' => 'nullable',
+            'experiences.*.id' => 'nullable',
             'experiences.*.company' => 'required|string',
             'experiences.*.role' => 'required|string',
             'experiences.*.year_of_experience' => 'required|numeric',
         ];
 
-        // Check if the authenticated user is an admin
-    
-        
+        // Check if the authenticated user is an admin 
         if (auth()->user()?->isAdmin()) {
        
             // Additional rules for admin

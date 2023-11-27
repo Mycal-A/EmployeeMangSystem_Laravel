@@ -4,8 +4,8 @@
     @foreach($employee->educations as $index => $educationDetail)
     <div class="education-details-section" data-index="{{ $index }}">
         <div class="row g-3 mx-auto">
-            <input type="hidden" name="educations[{{ $index }}][employee_id]" class="form-control"
-                value="{{ $educationDetail['employee_id'] ?: old('education.' . $index . '.employee_id', null) }}"
+            <input type="hidden" name="educations[{{ $index }}][id]" class="form-control"
+                value="{{ $educationDetail['id'] ?: old('education.' . $index . '.id', null) }}"
                 placeholder="Enter Education ID">
             <div class="col-md-3">
                 <label for="inputAddress" class="form-label">Course</label>

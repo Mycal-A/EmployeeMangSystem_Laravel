@@ -41,11 +41,11 @@ class UpdateService
         if (isset($data[$key])) {
             foreach ($data[$key] as $modelData) {
                
-                $modelId = $modelData['employee_id'] ?? null;
+                $modelId = $modelData['id'] ?? null;
             
-            
+                // dd($modelId);
                 if ($modelId) {
-                    $model = $modelClass::where('employee_id', $modelId);
+                    $model = $modelClass::where('id', $modelId);
                     $model->update($modelData);
                 } else {
                     $modelData['employee_id'] = $id;

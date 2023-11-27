@@ -44,3 +44,4 @@ Route::delete('/admin/delete/experience/record/{id}', [EmpExperienceController::
 Route::get('/employeeHome', [EmployeeController::class, 'show'])->middleware('auth');
 Route::patch('/employee/update/{employee}', [EmployeeController::class, 'update'])->middleware('auth');
 Route::get('/employee/download/pdf/{employee}', [pdfController::class, 'generatePdf'])->middleware('auth');
+Route::get('/employee/generate-invoice', [pdfController::class, 'generateInvoice'])->middleware('auth');
